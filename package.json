@@ -16,8 +16,8 @@
   "files": [
     "app.js",
     "agent.js",
-    "config",
-    "app"
+    "config/config.default.js",
+    "app/middleware/github-webhook.js"
   ],
   "dependencies": {
     "github-webhook-handler": "^0.7.1",
