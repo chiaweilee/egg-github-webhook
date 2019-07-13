@@ -1,6 +1,6 @@
 {
   "name": "egg-github-webhook",
-  "version": "0.0.0",
+  "version": "0.0.0-beta.1",
   "eggPlugin": {
     "name": "github-webhook"
   },

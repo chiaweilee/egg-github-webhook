@@ -31,10 +31,9 @@ module.exports = (option: IOption) => {
     });
   }
 
-  return function index(ctx: Context, next: () => Promise<any>) {
+  return function(ctx: Context, next: () => Promise<any>) {
     if (ctx.request.method === 'POST' && ctx.url === path) {
       handler(ctx.request, ctx.response);
-      return;
     }
 
     return next();
