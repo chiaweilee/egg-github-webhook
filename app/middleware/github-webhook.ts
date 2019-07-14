@@ -31,11 +31,11 @@ module.exports = (option: IOption) => {
     });
   }
 
-  return function(ctx: Context, next: () => Promise<any>) {
-    if (ctx.request.method === 'POST' && ctx.url === path) {
-      handler(ctx.request, ctx.response);
-    }
-
-    return next();
+  return function(ctx: Context, next: () => Promise<any>): void {
+    handler(ctx.req, ctx.res, err => {
+      if (!err) {
+        next();
+      }
+    });
   };
 };
