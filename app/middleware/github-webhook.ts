@@ -3,7 +3,7 @@
 import { Context } from 'egg';
 import { resolve } from 'path';
 
-const createHandler = require('github-webhook-handler');
+const createHandler = require('../../lib/github-webhook-handler');
 const isPlainObject = require('lodash/isPlainObject');
 const forEach = require('lodash/forEach');
 
@@ -31,11 +31,5 @@ module.exports = (option: IOption) => {
     });
   }
 
-  return function(ctx: Context, next: () => Promise<any>): void {
-    handler(ctx.req, ctx.res, err => {
-      if (!err) {
-        next();
-      }
-    });
-  };
+  return handler;
 };
