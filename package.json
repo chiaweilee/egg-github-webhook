@@ -1,6 +1,6 @@
 {
   "name": "egg-github-webhook",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0-beta.2",
   "eggPlugin": {
     "name": "githubWebhook"
   },
@@ -16,6 +16,7 @@
   "files": [
     "app.js",
     "agent.js",
+    "lib",
     "config/config.default.js",
     "app/middleware/github-webhook.js"
   ],
