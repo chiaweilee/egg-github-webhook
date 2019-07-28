@@ -25,6 +25,17 @@ function getEvents(options: CreateHandlerOptions): string[] | void {
   }
 }
 
+async function bodyParser(req: IncomingMessage) {
+  switch (req.headers['content-type']) {
+    case 'application/json':
+      return await parse.json(req);
+    case 'application/x-www-form-urlencoded':
+      return await parse.form(req);
+    default:
+      return await parse(req);
+  }
+}
+
 function create(options: CreateHandlerOptions): handler {
   assert(typeof options === 'object', 'must provide an options object');
   assert(typeof options.path === 'string', "must provide a 'path' option");
@@ -53,19 +64,27 @@ function create(options: CreateHandlerOptions): handler {
       event = req.headers['x-github-event'],
       id = req.headers['x-github-delivery'];
 
-    if (!sig) { return hasError('No X-Hub-Signature found on request'); }
+    if (!sig) {
+      return hasError('No X-Hub-Signature found on request');
+    }
 
-    if (!event) { return hasError('No X-Github-Event found on request'); }
+    if (!event) {
+      return hasError('No X-Github-Event found on request');
+    }
 
-    if (!id) { return hasError('No X-Github-Delivery found on request'); }
+    if (!id) {
+      return hasError('No X-Github-Delivery found on request');
+    }
 
     if (typeof event === 'string' && events && events.indexOf(event) == -1) {
       return hasError('X-Github-Event is not acceptable');
     }
 
-    const data = await parse.json(req);
+    const data = await bodyParser(req);
 
-    if (!verify(sig, data)) { return hasError('X-Hub-Signature does not match blob signature'); }
+    if (!verify(sig, data)) {
+      return hasError('X-Hub-Signature does not match blob signature');
+    }
 
     ctx.status = 200;
     ctx.body = '{"ok":true}';
