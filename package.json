@@ -16,7 +16,7 @@
   "files": [
     "app.js",
     "agent.js",
-    "lib",
+    "lib/github-webhook-handler.js",
     "config/config.default.js",
     "app/middleware/github-webhook.js"
   ],
