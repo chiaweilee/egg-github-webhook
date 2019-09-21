@@ -11,7 +11,6 @@
     "lint:ts": "tslint \"**/**/*.ts\" --fix",
     "build": "npm run build:ts",
     "build:ts": "tsc",
-    "build:umi": "umi build",
     "precommit": "lint-staged"
   },
   "files": [
@@ -47,8 +46,7 @@
     "tslint-config-ali": "^0.2.4",
     "tslint-config-prettier": "^1.18.0",
     "tslint-eslint-rules": "^5.4.0",
-    "typescript": "^3.3.3333",
-    "umi": "^2.9.6"
+    "typescript": "^3.3.3333"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
