@@ -28,7 +28,12 @@ githubWebhook: {
   path: '/',
   secret: 'your-github-webhook-password',
   event: {
+    // a js path
     push: './scripts/githook.js',
+    // or a function
+    push: function (event) {
+      // do sth
+    },
   }
 }
 ```
@@ -37,7 +42,7 @@ githubWebhook: {
 
 ## Options
 
-option | intro | type |  default  
+option | intro | type |  default  | |
 -|-|-|-
 path | Path of Payload URL | string | |
 secret | secret | string | |
